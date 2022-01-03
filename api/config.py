@@ -3,11 +3,6 @@ import os
 
 load_dotenv()
 
-# Database setup development
-# user = 'postgres'
-# db_url = 'localhost:5432'
-# db_name = 'asset_tracker'
-
 # Database setup production
 db_user = os.getenv('DB_USERNAME')
 db_url = os.getenv('DB_URL')
