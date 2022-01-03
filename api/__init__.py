@@ -1,7 +1,7 @@
 from flask import Flask
 from api import user
 
-from api.extentions import db, migrate
+from api.extentions import db, migrate, ma
 
 
 def create_app():
@@ -15,6 +15,7 @@ def create_app():
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
+    ma.init_app(app)
 
 
 def register_blueprints(app):

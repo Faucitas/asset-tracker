@@ -1,26 +1,29 @@
+import uuid
+
 from flask import Blueprint, jsonify, abort, request
-from api.user.models import User
+from api.user.models import User, UserSchema
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
 
-@bp.route('/', methods=['GET'])
+@bp.route('', methods=['GET'])
 def index():
     users = User.get_all()
-    return jsonify(users), 200
+    result = UserSchema(many=True).dump(users)
+    return jsonify(result), 200
 
 
-@bp.route('/<int:user_id>', methods=['GET'])
-def show(user_id: int):
-    user = User.get_or(user_id)
-    return jsonify(user), 200
+@bp.route('/<uuid: user_id>', methods=['GET'])
+def show(user_id: uuid):
+    user = User.get(user_id)
+    return UserSchema().dump(user), 200
 
 
-@bp.route('/', methods=['POST'])
+@bp.route('', methods=['POST'])
 def create():
     body = request.json
     if 'username' not in body or 'password' not in body:
-        print('end here')
         return abort(400)
+
     user = User.create(**body)
-    return jsonify(user.serialize())
+    return UserSchema().dump(user), 200
