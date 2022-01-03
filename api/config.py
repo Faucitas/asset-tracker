@@ -1,8 +1,18 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # Database setup development
-user = 'postgres'
-db_url = 'localhost:5432'
-db_name = 'asset_tracker'
+# user = 'postgres'
+# db_url = 'localhost:5432'
+# db_name = 'asset_tracker'
 
+# Database setup production
+db_user = os.getenv('DB_USERNAME')
+db_url = os.getenv('DB_URL')
+db_name = os.getenv('DB_NAME')
+db_password = os.getenv('DB_PASSWORD')
 
-SQLALCHEMY_DATABASE_URI= f'postgresql://{user}@{db_url}/{db_name}'
+SQLALCHEMY_DATABASE_URI= f'postgresql://{db_user}:{db_password}@{db_url}:5432/{db_name}'
 SQLALCHEMY_TRACK_MODIFICATIONS = False

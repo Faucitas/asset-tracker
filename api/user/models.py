@@ -1,8 +1,8 @@
 from api.database import db, Column, Model
+from api.extentions import ma
 
 class User(Model):
     __tablename__ = 'users'
-    # id = Column(db.Integer, primary_key=True, autoincrement=True)
     username = Column(db.String(128), unique=True, nullable=False)
     password = Column(db.String(128), nullable=False)
     email = Column(db.String(128))
@@ -10,20 +10,18 @@ class User(Model):
 
     @classmethod
     def get_all(cls):
-        users = cls.query.all()
-        results = []
-        for user in users:
-            results.append(user.serialize())
-        return results
+        return cls.query.all()
 
-    # @classmethod
-    # def get(cls, user_id: int):
-    #     user = cls.query.get_or_404(user_id)
-    #     return user.serialize()
+    @classmethod
+    def get(cls, user_id):
+        return cls.query.get_or_404(user_id)
 
-    def serialize(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
-        }
+
+class UserSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = User
+
+    id = ma.auto_field()
+    username = ma.auto_field()
+    email = ma.auto_field()
+
