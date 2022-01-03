@@ -3,7 +3,6 @@ from api.extentions import ma
 
 class User(Model):
     __tablename__ = 'users'
-    # id = Column(db.Integer, primary_key=True, autoincrement=True)
     username = Column(db.String(128), unique=True, nullable=False)
     password = Column(db.String(128), nullable=False)
     email = Column(db.String(128))
@@ -11,18 +10,11 @@ class User(Model):
 
     @classmethod
     def get_all(cls):
-        users = cls.query.all()
-        # print(users)
-        # results = []
-        # for user in users:
-        #     print(user)
-        #     results.append(user)
-        return users
+        return cls.query.all()
 
     @classmethod
     def get(cls, user_id):
-        user = cls.query.get_or_404(user_id)
-        return user
+        return cls.query.get_or_404(user_id)
 
 
 class UserSchema(ma.SQLAlchemySchema):

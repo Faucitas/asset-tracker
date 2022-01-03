@@ -13,7 +13,7 @@ def index():
     return jsonify(result), 200
 
 
-@bp.route('/<uuid: user_id>', methods=['GET'])
+@bp.route('/<uuid:user_id>', methods=['GET'])
 def show(user_id: uuid):
     user = User.get(user_id)
     return UserSchema().dump(user), 200
