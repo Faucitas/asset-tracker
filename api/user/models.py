@@ -1,5 +1,7 @@
-from api.database import db, Column, Model
-from api.extentions import ma
+from api.database import Column, Model
+from api.extentions import ma, db
+from api.account.models import account
+
 
 class User(Model):
     __tablename__ = 'users'
@@ -7,14 +9,12 @@ class User(Model):
     password = Column(db.String(128), nullable=False)
     email = Column(db.String(128))
     is_admin = Column(db.Boolean, default=False, nullable=False)
+    accounts = db.relationship('Account', backref='user', lazy=True, cascade="all, delete")
 
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
 
-    @classmethod
-    def get(cls, user_id):
-        return cls.query.get_or_404(user_id)
+    def get_attribute(self, attribute):
+        value = getattr(self, attribute)
+        return value
 
 
 class UserSchema(ma.SQLAlchemySchema):
@@ -24,4 +24,5 @@ class UserSchema(ma.SQLAlchemySchema):
     id = ma.auto_field()
     username = ma.auto_field()
     email = ma.auto_field()
+    accounts = ma.auto_field()
 

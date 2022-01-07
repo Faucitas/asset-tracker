@@ -26,4 +26,20 @@ def create():
         return abort(400)
 
     user = User.create(**body)
-    return UserSchema().dump(user), 200
+    return UserSchema().dump(user), 201
+
+
+@bp.route('/<uuid:user_id>', methods=['DELETE'])
+def delete(user_id: uuid):
+    user = User.get(user_id)
+    username = user.get_attribute('username')
+    user.delete()
+    return {"message": f"Deleted {username}"}, 200
+
+
+@bp.route('/<uuid:user_id>', methods=['PUT'])
+def update(user_id: uuid):
+    body = request.json
+    user = User.get(user_id)
+    user.update(**body)
+    return UserSchema().dump(user), 201
