@@ -1,1 +1,1 @@
-from api.database import db
+from .account import Account, AccountSchema

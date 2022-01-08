@@ -41,7 +41,9 @@ class Model(CRUDMixin, db.Model):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
     @classmethod
-    def get_all(cls):
+    def get_all(cls, **kwargs):
+        if kwargs:
+            return cls.query.filter_by(**kwargs)
         return cls.query.all()
 
     @classmethod
