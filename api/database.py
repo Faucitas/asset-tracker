@@ -18,6 +18,7 @@ class CRUDMixin(object):
     def update(self, commit=True, **kwargs):
         for attr, value in kwargs.items():
             setattr(self, attr, value)
+            print(attr, value)
         if commit:
             return self.save()
         return self
@@ -39,3 +40,10 @@ class Model(CRUDMixin, db.Model):
     __abstract__ = True
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+
+    @classmethod
+    def get(cls, id):
+        return cls.query.get_or_404(id)

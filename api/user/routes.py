@@ -13,20 +13,19 @@ def index():
     return jsonify(result), 200
 
 
-@bp.route('/<uuid:user_id>', methods=['GET'])
-def show(user_id: uuid):
-    user = User.get(user_id)
-    return UserSchema().dump(user), 200
-
-
 @bp.route('', methods=['POST'])
 def create():
     body = request.json
     if 'username' not in body or 'password' not in body:
         return abort(400)
-
     user = User.create(**body)
     return UserSchema().dump(user), 201
+
+
+@bp.route('/<uuid:user_id>', methods=['GET'])
+def show(user_id: uuid):
+    user = User.get(user_id)
+    return UserSchema().dump(user), 200
 
 
 @bp.route('/<uuid:user_id>', methods=['DELETE'])
@@ -42,4 +41,4 @@ def update(user_id: uuid):
     body = request.json
     user = User.get(user_id)
     user.update(**body)
-    return UserSchema().dump(user), 201
+    return UserSchema().dump(user), 200
