@@ -1,6 +1,6 @@
 from api.database import Column, Model
 from api.extentions import ma, db
-from api.account.models import account
+from api.transaction.models import account
 
 
 class User(Model):

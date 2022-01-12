@@ -22,3 +22,4 @@ class AccountSchema(ma.SQLAlchemySchema):
     id = ma.auto_field()
     name = ma.auto_field()
     type = ma.auto_field()
+    user_id = ma.auto_field()

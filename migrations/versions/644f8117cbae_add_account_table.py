@@ -1,4 +1,4 @@
-"""add account table
+"""add transaction table
 
 Revision ID: 644f8117cbae
 Revises: c216d579b6df
