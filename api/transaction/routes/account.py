@@ -2,6 +2,7 @@ import uuid
 
 from flask import Blueprint, jsonify, abort, request
 from marshmallow import ValidationError
+from api.user.models import User
 from api.transaction.models import Account, AccountSchema
 
 
