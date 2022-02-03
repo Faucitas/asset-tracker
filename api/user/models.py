@@ -7,7 +7,7 @@ class User(Model):
     __tablename__ = 'users'
     username = Column(db.String(128), unique=True, nullable=False)
     password = Column(db.String(256), nullable=False)
-    email = Column(db.String(128))
+    email = Column(db.String(128)) # TODO Change email to unique=true
     is_admin = Column(db.Boolean, default=False, nullable=False)
     accounts = db.relationship('Account', backref='user', lazy=True, cascade="all, delete")
 
@@ -22,7 +22,9 @@ class UserSchema(ma.SQLAlchemySchema):
         model = User
 
     id = ma.auto_field()
-    username = ma.auto_field()
+    username = ma.auto_field(required=False)
     email = ma.auto_field()
     accounts = ma.auto_field()
+    password = ma.auto_field(load_only=True)
+
 
