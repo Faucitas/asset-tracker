@@ -10,11 +10,13 @@ USER_COUNT = 50
 ACCOUNT_COUNT = 100
 ACCOUNT_TYPES = ['Crypto', 'Stocks', 'Bank', 'Credit']
 
+
 def truncate_tables():
     """Delete all rows from database tables"""
     Account.query.delete()
     User.query.delete()
     db.session.commit()
+
 
 def get_random_user_id():
     users = User.get_all()

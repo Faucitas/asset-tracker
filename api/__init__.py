@@ -2,7 +2,7 @@ from flask import Flask
 from api import transaction
 from api import user
 from api import transaction
-from api.extentions import db, migrate, ma
+from api.extentions import db, migrate, ma, jwt
 
 
 def create_app():
@@ -16,6 +16,7 @@ def create_app():
 def register_extensions(app):
     db.init_app(app)
     ma.init_app(app)
+    jwt.init_app(app)
     migrate.init_app(app, db)
 
 

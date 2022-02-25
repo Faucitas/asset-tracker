@@ -1,9 +1,26 @@
 import uuid
-
 from flask import Blueprint, jsonify, abort, request
+from marshmallow import ValidationError
+# from flask_sqlalchemy import
 from api.user.models import User, UserSchema
 
 bp = Blueprint('users', __name__, url_prefix='/users')
+
+
+@bp.route('/login', methods=['POST'])
+def login():
+    body = request.get_json()
+    schema = UserSchema()
+
+    try:
+        data = schema.load(body)
+    except ValidationError as err:
+        return jsonify({'error': err.messages})
+
+    user = User.query.filter_by(**data).first()
+    if user:
+        return schema.dump(user)
+    return jsonify({'message': 'Bad Username or Password Entered'})
 
 
 @bp.route('', methods=['GET'])
