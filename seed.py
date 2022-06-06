@@ -4,7 +4,7 @@ from faker import Faker
 from api import create_app
 from api.database import db
 from api.user.models import User
-
+from api.transaction.models import Account
 
 USER_COUNT = 50
 ACCOUNT_TYPES = ['Crypto', 'Stocks', 'Bank', 'Credit']
@@ -28,6 +28,7 @@ def main():
     truncate_tables()
     fake = Faker()
 
+
     # Generate users
     for _ in range(USER_COUNT):
         rand_user = {
@@ -36,7 +37,7 @@ def main():
             'password': fake.password(length=256)
         }
         User.create(**rand_user)
-
+        
 
 if __name__ == '__main__':
     main()
