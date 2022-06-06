@@ -4,7 +4,6 @@ from faker import Faker
 from api import create_app
 from api.database import db
 from api.user.models import User
-from api.transaction.models import Account
 
 USER_COUNT = 50
 ACCOUNT_TYPES = ['Crypto', 'Stocks', 'Bank', 'Credit']

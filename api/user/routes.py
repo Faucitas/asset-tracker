@@ -1,7 +1,6 @@
 import uuid
 from flask import Blueprint, jsonify, abort, request
 from marshmallow import ValidationError
-# from flask_sqlalchemy import
 from api.user.models import User, UserSchema
 
 bp = Blueprint('users', __name__, url_prefix='/users')
