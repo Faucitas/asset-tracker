@@ -3,7 +3,7 @@ import os
 
 load_dotenv()
 
-# Database setup production
+# Database setup
 db_user = os.getenv('DB_USERNAME')
 db_url = os.getenv('DB_URL')
 db_name = os.getenv('DB_NAME')
