@@ -41,13 +41,13 @@ def main():
         User.create(**rand_user)
 
 
-    for _ in range(ACCOUNT_COUNT):
-        rand_account = {
-            'name': fake.company(),
-            'type': ACCOUNT_TYPES[rd.randint(0, len(ACCOUNT_TYPES) - 1)],
-            'user_id': get_random_user_id()
-        }
-        Account.create(**rand_account)
+    # for _ in range(ACCOUNT_COUNT):
+    #     rand_account = {
+    #         'name': fake.company(),
+    #         'type': ACCOUNT_TYPES[rd.randint(0, len(ACCOUNT_TYPES) - 1)],
+    #         'user_id': get_random_user_id()
+    #     }
+    #     Account.create(**rand_account)
 
 
 
