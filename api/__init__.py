@@ -1,7 +1,5 @@
 from flask import Flask
-from api import transaction
 from api import user
-from api import transaction
 from api.extentions import db, migrate, ma, jwt
 
 
@@ -22,5 +20,5 @@ def register_extensions(app):
 
 def register_blueprints(app):
     app.register_blueprint(user.routes.bp)
-    app.register_blueprint(transaction.routes.bp)
+
 
