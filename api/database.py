@@ -40,6 +40,7 @@ class Model(CRUDMixin, db.Model):
     __abstract__ = True
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
+    # TODO Maybe the below methods should just be one?
     @classmethod
     def get_all(cls, **kwargs):
         if kwargs:
