@@ -13,7 +13,7 @@ class Account(Model):
         return value
 
 
-class UserSchema(ma.SQLAlchemySchema):
+class AccountSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Account
 
