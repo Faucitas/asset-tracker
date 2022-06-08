@@ -1,5 +1,5 @@
-from api.database import Column, Model
-from api.extentions import ma, db
+from api.database import Column, Model, db
+from api.extentions import ma
 
 
 class Account(Model):
