@@ -1,5 +1,6 @@
 from flask import Flask
 from api import user
+from api import account
 from api.extentions import db, migrate, ma, jwt
 
 
