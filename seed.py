@@ -9,7 +9,7 @@ USER_COUNT = 50
 ACCOUNT_TYPES = ['Crypto', 'Stocks', 'Bank', 'Credit']
 
 
-def truncate_tables():git
+def truncate_tables():
     """Delete all rows from database tables"""
     User.query.delete()
     db.session.commit()
