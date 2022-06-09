@@ -20,4 +20,5 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    app.register_blueprint(user.routes.bp)
+    # app.register_blueprint(user.routes.bp)
+    pass

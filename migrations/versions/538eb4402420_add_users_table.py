@@ -1,8 +1,8 @@
 """add users table
 
-Revision ID: fdfe860fe623
+Revision ID: 538eb4402420
 Revises: 
-Create Date: 2022-06-08 13:29:13.626429
+Create Date: 2022-06-09 15:31:20.324118
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'fdfe860fe623'
+revision = '538eb4402420'
 down_revision = None
 branch_labels = None
 depends_on = None

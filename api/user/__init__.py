@@ -1,1 +1,1 @@
-from . import routes as user_bp
+from . import routes
