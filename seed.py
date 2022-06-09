@@ -3,15 +3,18 @@ from faker import Faker
 
 from api import create_app
 from api.database import db
+from api.account.models import Account
 from api.user.models import User
 
 USER_COUNT = 50
-ACCOUNT_TYPES = ['Crypto', 'Stocks', 'Bank', 'Credit']
+ACCOUNT_COUNT = 100
+STRATEGY_TYPES = ['HODL', 'Rebalance', 'Naked Trading']
 
 
 def truncate_tables():
     """Delete all rows from database tables"""
     User.query.delete()
+    Account.query.delete()
     db.session.commit()
 
 
@@ -36,6 +39,16 @@ def main():
             'password': fake.password(length=256)
         }
         User.create(**rand_user)
+
+    #Generate Random Accounts
+    for _ in range(ACCOUNT_COUNT):
+        rand_account = {
+            'custodian': fake.company(),
+            'account_number': fake.msisdn(),
+            'strategy': STRATEGY_TYPES[rd.randint(0, len(STRATEGY_TYPES) - 1)],
+            # 'user_id': get_random_user_id()
+        }
+        Account.create(**rand_account)
         
 
 if __name__ == '__main__':
