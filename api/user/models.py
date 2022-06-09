@@ -1,8 +1,8 @@
-from api.database import Column, Model
+from api.database import Column, PKModel
 from api.extentions import ma, db
 
 
-class User(Model):
+class User(PKModel):
     __tablename__ = 'users'
     username = Column(db.String(128), unique=True, nullable=False)
     password = Column(db.String(256), nullable=False)
