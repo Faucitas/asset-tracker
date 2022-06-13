@@ -1,6 +1,7 @@
-from api.database import Column, PKModel
-from api.extentions import ma, db
+from api.database import Column, PKModel, db
+from api.extentions import ma
 
+from api.account.models import Account
 
 class User(PKModel):
     __tablename__ = 'users'
@@ -8,6 +9,7 @@ class User(PKModel):
     password = Column(db.String(256), nullable=False)
     email = Column(db.String(128))
     is_admin = Column(db.Boolean, default=False, nullable=False)
+    accounts = db.relationship('Account', backref='user', lazy=True)
 
     def get_attribute(self, attribute):
         value = getattr(self, attribute)
